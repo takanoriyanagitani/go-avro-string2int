@@ -58,15 +58,17 @@ func (s StringToInt) Convert(original sql.Null[string]) (sql.Null[int32], error)
 	}
 }
 
-func (s StringToInt) ConvertToPtr(original sql.Null[string]) (*int32, error){
+func (s StringToInt) ConvertToPtr(original sql.Null[string]) (*int32, error) {
 	nullable, e := s.Convert(original)
 	if nil != e {
 		return nil, e
 	}
 
 	switch nullable.Valid {
-		case true: return &nullable.V, nil
-		default: return nil, nil
+	case true:
+		return &nullable.V, nil
+	default:
+		return nil, nil
 	}
 }
 
